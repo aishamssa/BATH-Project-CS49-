@@ -1,53 +1,69 @@
+package wars;
+
+import java.io.Serializable;
 
 /**
  * Write a description of class Encounter here.
  *
- * @author (your name)
+ * @author (Ohemaa)
  * @version (a version number or a date)
  */
-public class Encounter
+public class Encounter implements Serializable
 {
     // instance variables - replace the example below with your own
     private int    encounterNo; //
-    private String encouterType;
     private String location;
     private int    requiredSkill;
     private double prizeMoney;
+    private EncounterType encounterType;
 
     /**
      * Constructor for objects of class Encounter
      */
-    public Encounter()
+    public Encounter(int enNo, EncounterType enType, String loc,int reqSkill, double prizeMoney)
     {
-        // initialise instance variables
-        
+       this.encounterNo = enNo;
+       this.encounterType = enType;       
+       this. location = loc;
+       this.requiredSkill = reqSkill;
+       this.prizeMoney = prizeMoney;
     }
 
-
+    public int getEnNo()
+    {
+        return encounterNo;
+    }
+    
     public int getSkillLevel()
     {
         // put your code here
         return requiredSkill;
     }
     
-    public boolean isShipEligilbe()
+    public EncounterType getEncounterType()
     {
-        return true;
+        return encounterType;
+    }
+    public String getLocation()
+    {   
+        return location;
+    }
+    public double getPrizeMoney()
+    {
+        return prizeMoney;
+    }
+    public boolean inShipEligible(Ship ship)
+    {
+        return ship.getShipBattleSkill() >= requiredSkill;
     }
     
-    public void winEncounter()
-    {
-      //handle what happens when a player wins 
-      // add money to war chest and so on
-    }
-    
-    public void loseEncounter()
-    {
-        //handles what happens whne a player loses
-    }
     
     public String toString()
     {
-     return null;
+        return "Encounter # " + encounterNo +
+               "\n Type: " + encounterType +
+               "\n Location: " + location +
+               "\n Required Skill: " + requiredSkill +
+               "\n Prize: £" + prizeMoney;
     }
 }

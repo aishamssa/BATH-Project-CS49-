@@ -1,11 +1,12 @@
-
+package wars;
+import java.io.Serializable;
 /**
  * Write a description of class Warchest here.
  *
- * @author (your name)
+ * @author (Ohemaa)
  * @version (a version number or a date)
  */
-public class Warchest
+public class Warchest implements Serializable
 {
     // instance variables - replace the example below with your own
     private int prizeMoney;
@@ -19,6 +20,11 @@ public class Warchest
     {
         // initialise instance variables
         
+    }
+    
+    public int getWarChest()
+    {
+        return warChest;
     }
 
     public int deductPound(int decution)

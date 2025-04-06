@@ -1,3 +1,4 @@
+package wars;
 
 /**
  * Write a description of class Frigate here.
@@ -5,7 +6,9 @@
  * @author (Ohemaa&Ishika)
  * @version (a version number or a date)
  */
-public class Frigate extends Ships
+import java.io.Serializable;
+
+ public class Frigate extends Ship implements Serializable
 {
     // instance variables - replace the example below with your own
     private int noOfCannons;
@@ -13,33 +16,45 @@ public class Frigate extends Ships
     //Subclass of Ship
     /**
      * Constructor for objects of class Frigate
-     * @param <error>
+     * 
      */
-    public Frigate(String nm ,String cap,int bs ,int cf,int cannons ,boolean pin)
+    public Frigate(String name ,String captain,int battleSkill ,int cannons ,boolean pin)
     {
         // initialise instance variables
-        super(nm ,cap ,bs,cf);
+        super(name ,captain ,battleSkill,cannons*10,ShipState.RESERVE);
         this.noOfCannons = cannons;
         this.pinnace = pin;
+        
+        
     }
 
-    public boolean hasPinnance()
+    public boolean hasPinnace()
     {
-        return true; // returns T/F if ship has pinnance
+        return pinnace; // returns T/F if ship has pinnance
     }
     
     
-    public int noOfCannons( int can)
+    public void setCannons( int can)
     {
         noOfCannons = can;
-        return noOfCannons;
-          ; //Placeholder
-        // return
+        setCommissionFee(can * 10); //  updates commission fee if cannons change
     }
+    
+    
+    public int calculateComissionFee()
+      {
+        return noOfCannons*10;    
+      }
     //Frigates have their own individual battle skill
     //Friagte commission fee baesd on number of cannons
     //1 cannnon = 10 pounds
-    //2 cannon = 20 ponunds
+    //2 cannon = 20 ponund   
     
-    
+    public String toString()
+    {
+     return super.toString() + 
+             "\nNumber of  cannons: "+ noOfCannons +
+             " \nHas Pinnace" + pinnace;
+    }
 }
+ 

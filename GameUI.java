@@ -36,52 +36,73 @@ public class GameUI
             {
                 System.out.println("Enter Ship name");
                 myIn.nextLine();
-                String ref = (myIn.nextLine()).trim();
+                String ref = (myIn.nextLine());
                 System.out.println(myBattles.getShipDetails(ref));
             } 
             else if (choice == 4)
             {
-                //write your code here
+               System.out.println("Enter name of ship to commission:");
+               myIn.nextLine(); // clear buffer
+               String shipName = myIn.nextLine();
+               System.out.println(myBattles.commissionShip(shipName));
 
             }
             else if (choice == 5)
             {
-       	       //write your code here
-       
+       	        System.out.println("Enter number of encounter:");
+                int encNumber = myIn.nextInt();
+                System.out.println(myBattles.fightEncounter(encNumber));
                   
             }
-            else if (choice ==6)
+            else if (choice == 6)
             {
-	        //write your code here
+	        System.out.println("Enter name of ship to restore:");
+                myIn.nextLine();
+                String nameRestore = myIn.nextLine();
+                myBattles.restoreShip(nameRestore);
+                System.out.println("Ship: " + nameRestore +" has been restored!");   
 
 
             }
             else if (choice == 7)
             {
-                //write your code here
-
+                System.out.println("Enter name of ship to decommission:");
+                myIn.nextLine();
+                String nameDecom = myIn.nextLine().trim();
+                System.out.println(myBattles.decommissionShip(nameDecom));
 
             }
             else if (choice==8)
             {
                 System.out.println(myBattles.toString());
             }
-//            else if (choice == 9) // Task 7 only
-//            {
-//                System.out.println("Write to file");
-//                myBattles.saveGame("olenka.dat");
-//            }
-//            else if (choice == 10) // Task 7 only
-//            {
-//                System.out.println("Recommission from file");
-//                SeaBattles myBattles2=null;
-//                myBattles2.loadGame("olenka.dat");
-//                System.out.println(myBattles2.toString());               
-//            }  
+            else if (choice == 9) // Task 7 only
+            {
+                // Save game
+                System.out.println("Enter filename to save:");
+                myIn.nextLine();
+                String saveFile = myIn.nextLine().trim();
+                myBattles.saveGame(saveFile);
+                System.out.println("Game saved.");
+            }
+            else if (choice == 10) // Task 7 only
+            {
+                // Load game
+                System.out.println("Enter filename to load:");
+                myIn.nextLine();
+                String loadFile = myIn.nextLine().trim();
+                SeaBattles loaded = SeaBattles.loadGame(loadFile);
+                if (loaded != null) {
+                    myBattles = loaded;
+                    System.out.println("Game loaded successfully.");
+                    System.out.println(myBattles.toString());
+                } else {
+                    System.out.println("Failed to load game.");          
+            }  //Replaced default save/load with custom version -allows filename input
         }
-        System.out.println("Thank-you");
     }
-    
+        System.out.println("Thank you for playing");
+  }
     private int getMenuItem()
     {   int choice = 100;  
         System.out.println("Main Menu");
